@@ -23,7 +23,11 @@ public class RecycleController extends ABaseController {
     private FileInfoService fileInfoService;
 
     /**
-     * 根据条件分页查询
+     * 根据条件分页查询回收站列表
+     * @param session
+     * @param pageNo 页码
+     * @param pageSize 每页条数
+     * @return
      */
     @RequestMapping("/loadRecycleList")
     @GlobalInterceptor(checkParams = true)
@@ -38,6 +42,12 @@ public class RecycleController extends ABaseController {
         return getSuccessResponseVO(convert2PaginationVO(result, FileInfoVO.class));
     }
 
+    /**
+     * 还原文件（从回收站）
+     * @param session
+     * @param fileIds
+     * @return
+     */
     @RequestMapping("/recoverFile")
     @GlobalInterceptor(checkParams = true)
     public ResponseVO recoverFile(HttpSession session, @VerifyParam(required = true) String fileIds) {
@@ -46,6 +56,12 @@ public class RecycleController extends ABaseController {
         return getSuccessResponseVO(null);
     }
 
+    /**
+     * 彻底删除（从回收站）
+     * @param session
+     * @param fileIds
+     * @return
+     */
     @RequestMapping("/delFile")
     @GlobalInterceptor(checkParams = true)
     public ResponseVO delFile(HttpSession session, @VerifyParam(required = true) String fileIds) {

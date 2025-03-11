@@ -55,11 +55,11 @@ public class AccountController extends ABaseController {
     private RedisComponent redisComponent;
 
     /**
-     * 验证码
+     * 校验图形验证码
      *
      * @param response
      * @param session
-     * @param type
+     * @param type 0:登录注册   1:邮箱验证码发送 默认0
      * @throws IOException
      */
     @RequestMapping(value = "/checkCode")
@@ -82,11 +82,13 @@ public class AccountController extends ABaseController {
     }
 
     /**
-     * @Description: 发送邮箱验证码
-     * @auther: laoluo
-     * @date: 20:39 2023/4/1
-     * @param: [session, email, checkCode, type]
-     * @return: com.easypan.entity.vo.ResponseVO
+     * 发送邮箱验证码
+     * @param session
+     * @param email
+     * @param checkCode 图片验证码
+     * @example checkCode=”aCiJd"
+     * @param type  0注册 1找回密码
+     * @return
      */
     @RequestMapping("/sendEmailCode")
     @GlobalInterceptor(checkLogin = false, checkParams = true)
@@ -106,11 +108,14 @@ public class AccountController extends ABaseController {
     }
 
     /**
-     * @Description: 注册
-     * @auther: laoluo
-     * @date: 20:39 2023/4/1
-     * @param: [session, email, nickName, password, checkCode, emailCode]
-     * @return: com.easypan.entity.vo.ResponseVO
+     * 注册
+     * @param session
+     * @param email
+     * @param nickName 用户名
+     * @param password 密码 （只能是数字 字母 字数字符 8-18位）
+     * @param checkCode 图片验证码
+     * @param emailCode
+     * @return
      */
     @RequestMapping("/register")
     @GlobalInterceptor(checkLogin = false, checkParams = true)
@@ -132,11 +137,13 @@ public class AccountController extends ABaseController {
     }
 
     /**
-     * @Description: 登录
-     * @auther: laoluo
-     * @date: 20:39 2023/4/1
-     * @param: [session, request, email, password, checkCode]
-     * @return: com.easypan.entity.vo.ResponseVO
+     *  账号登录
+     * @param session
+     * @param request
+     * @param email
+     * @param password
+     * @param checkCode 图片验证码
+     * @return
      */
     @RequestMapping("/login")
     @GlobalInterceptor(checkLogin = false, checkParams = true)
@@ -156,6 +163,15 @@ public class AccountController extends ABaseController {
         }
     }
 
+    /**
+     * 重置密码
+     * @param session
+     * @param email
+     * @param password
+     * @param checkCode
+     * @param emailCode
+     * @return
+     */
     @RequestMapping("/resetPwd")
     @GlobalInterceptor(checkLogin = false, checkParams = true)
     public ResponseVO resetPwd(HttpSession session,
@@ -174,6 +190,11 @@ public class AccountController extends ABaseController {
         }
     }
 
+    /**
+     * 获取用户头像
+     * @param response
+     * @param userId
+     */
     @RequestMapping("/getAvatar/{userId}")
     @GlobalInterceptor(checkLogin = false, checkParams = true)
     public void getAvatar(HttpServletResponse response, @VerifyParam(required = true) @PathVariable("userId") String userId) {
@@ -196,6 +217,10 @@ public class AccountController extends ABaseController {
         readFile(response, avatarPath);
     }
 
+    /**
+     * 输出默认头像
+     * @param response
+     */
     private void printNoDefaultImage(HttpServletResponse response) {
         response.setHeader(CONTENT_TYPE, CONTENT_TYPE_VALUE);
         response.setStatus(HttpStatus.OK.value());
@@ -211,6 +236,11 @@ public class AccountController extends ABaseController {
         }
     }
 
+    /**
+     * 获取用户信息
+     * @param session
+     * @return
+     */
     @RequestMapping("/getUserInfo")
     @GlobalInterceptor
     public ResponseVO getUserInfo(HttpSession session) {
@@ -218,6 +248,11 @@ public class AccountController extends ABaseController {
         return getSuccessResponseVO(sessionWebUserDto);
     }
 
+    /**
+     * 获取用户空间
+     * @param session
+     * @return
+     */
     @RequestMapping("/getUseSpace")
     @GlobalInterceptor
     public ResponseVO getUseSpace(HttpSession session) {
@@ -225,12 +260,23 @@ public class AccountController extends ABaseController {
         return getSuccessResponseVO(redisComponent.getUserSpaceUse(sessionWebUserDto.getUserId()));
     }
 
+    /**
+     * 退出登录
+     * @param session
+     * @return
+     */
     @RequestMapping("/logout")
     public ResponseVO logout(HttpSession session) {
         session.invalidate();
         return getSuccessResponseVO(null);
     }
 
+    /**
+     * 更新用户头像
+     * @param session
+     * @param avatar
+     * @return
+     */
     @RequestMapping("/updateUserAvatar")
     @GlobalInterceptor
     public ResponseVO updateUserAvatar(HttpSession session, MultipartFile avatar) {
@@ -255,6 +301,12 @@ public class AccountController extends ABaseController {
         return getSuccessResponseVO(null);
     }
 
+    /**
+     * 修改密码
+     * @param session
+     * @param password
+     * @return
+     */
     @RequestMapping("/updatePassword")
     @GlobalInterceptor(checkParams = true)
     public ResponseVO updatePassword(HttpSession session,
@@ -278,6 +330,13 @@ public class AccountController extends ABaseController {
         return getSuccessResponseVO(url);
     }
 
+    /**
+     * qq登录
+     * @param session
+     * @param code
+     * @param state
+     * @return
+     */
     @RequestMapping("qqlogin/callback")
     @GlobalInterceptor(checkLogin = false, checkParams = true)
     public ResponseVO qqLoginCallback(HttpSession session,

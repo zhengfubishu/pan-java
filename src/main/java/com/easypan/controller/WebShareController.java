@@ -189,6 +189,13 @@ public class WebShareController extends CommonFileController {
         super.getFile(response, fileId, shareSessionDto.getShareUserId());
     }
 
+    /**
+     * 获取分享的视频文件
+     * @param response
+     * @param session
+     * @param shareId
+     * @param fileId
+     */
     @RequestMapping("/ts/getVideoInfo/{shareId}/{fileId}")
     public void getVideoInfo(HttpServletResponse response,
                              HttpSession session,

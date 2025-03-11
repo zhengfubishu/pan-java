@@ -20,7 +20,12 @@ public class ShareController extends ABaseController {
     @Resource
     private FileShareService fileShareService;
 
-
+    /**
+     * 根据条件获取分享文件列表
+     * @param session
+     * @param query
+     * @return
+     */
     @RequestMapping("/loadShareList")
     @GlobalInterceptor(checkParams = true)
     public ResponseVO loadShareList(HttpSession session, FileShareQuery query) {
@@ -32,6 +37,14 @@ public class ShareController extends ABaseController {
         return getSuccessResponseVO(resultVO);
     }
 
+    /**
+     * 分享文件
+     * @param session
+     * @param fileId
+     * @param validType 有效期类型 0:1天 1:7天 2:30天 3:永久有效
+     * @param code 提取码
+     * @return
+     */
     @RequestMapping("/shareFile")
     @GlobalInterceptor(checkParams = true)
     public ResponseVO shareFile(HttpSession session,
@@ -48,6 +61,12 @@ public class ShareController extends ABaseController {
         return getSuccessResponseVO(share);
     }
 
+    /**
+     * 取消分享
+     * @param session
+     * @param shareIds
+     * @return
+     */
     @RequestMapping("/cancelShare")
     @GlobalInterceptor(checkParams = true)
     public ResponseVO cancelShare(HttpSession session, @VerifyParam(required = true) String shareIds) {
