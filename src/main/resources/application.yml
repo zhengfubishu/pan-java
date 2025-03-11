@@ -54,7 +54,24 @@ spring:
           max-idle: 10
           min-idle: 0
       timeout: 2000
-
+  ai:
+    #    百炼
+    dashscope:
+      api-key:  sk-7611bb1995034808add59be4a7edd592
+      chat:
+        options:
+          model:  deepseek-r1-distill-qwen-1.5b
+    openai:
+      #      api-key:  GkOrVUFGgiNkvucxwuGM:sMpokPhmCXxPByPiNhqV #讯飞
+      api-key: sk-13972c8ba9b24d5d884702b879ebcdb6
+      #      api-key:  sk-t2yreLGFumerOgSpds3ECjEeuoIn0jyEUOU48jl2npVaHZ8l #中转openai
+      #      base_url: https://xiaoai.plus/
+      #      base_url:  https://spark-api-open.xf-yun.com/v1
+      #      base_url:  https://api.deepseek.com/chat/completions #deepseek
+      base_url: https://api.deepseek.com #deepseek
+      chat:
+        options:
+          model: deepseek-chat
 project:
   folder: d:/tmp/webser/myapps/easypan/
 
@@ -67,15 +84,15 @@ admin:
 
 dev: false
 
-qq:
-  app:
-    id: 123456
-    key: 123456
-  url:
-    authorization: "https://graph.qq.com/oauth2.0/authorize?response_type=code&client_id=%s&redirect_uri=%s&state=%s"
-    access:
-      token: "https://graph.qq.com/oauth2.0/token?grant_type=authorization_code&client_id=%s&client_secret=%s&code=%s&redirect_uri=%s"
-    openid: "https://graph.qq.com/oauth2.0/me?access_token=%S"
-    user:
-      info: "https://graph.qq.com/user/get_user_info?access_token=%s&oauth_consumer_key=%s&openid=%s"
-    redirect: "http://easypan.wuhancoder.com/qqlogincalback"
+#qq:
+#  app:
+#    id: 123456
+#    key: 123456
+#  url:
+#    authorization: "https://graph.qq.com/oauth2.0/authorize?response_type=code&client_id=%s&redirect_uri=%s&state=%s"
+#    access:
+#      token: "https://graph.qq.com/oauth2.0/token?grant_type=authorization_code&client_id=%s&client_secret=%s&code=%s&redirect_uri=%s"
+#    openid: "https://graph.qq.com/oauth2.0/me?access_token=%S"
+#    user:
+#      info: "https://graph.qq.com/user/get_user_info?access_token=%s&oauth_consumer_key=%s&openid=%s"
+#    redirect: "http://easypan.wuhancoder.com/qqlogincalback"

@@ -7,7 +7,7 @@
         <groupId>org.springframework.boot</groupId>
         <artifactId>spring-boot-starter-parent</artifactId>
 <!--        <version>2.6.1</version>-->
-        <version>3.3.7</version>
+        <version>3.3.4</version>
         <relativePath/>
     </parent>
 
@@ -38,12 +38,14 @@
         <logback.version>1.5.6</logback.version>
         <mysql.version>8.0.31</mysql.version>
         <aspectjweaver.version>1.9.4</aspectjweaver.version>
-        <okhttp3.version>3.2.0</okhttp3.version>
+        <okhttp3.version>4.12.0</okhttp3.version>
         <fastjson.version>1.2.66</fastjson.version>
         <commons.lang3.version>3.4</commons.lang3.version>
         <commons.codec.version>1.9</commons.codec.version>
         <commons.io.version>2.5</commons.io.version>
         <mybatis-plus.version>3.5.3.1</mybatis-plus.version>
+        <ai-alibaba>1.0.0-M5.1</ai-alibaba>
+        <spring-ai.version>1.0.0-M5</spring-ai.version>
     </properties>
 
     <dependencies>
@@ -83,11 +85,11 @@
         </dependency>
 
 
-        <dependency>
-            <groupId>com.baomidou</groupId>
-            <artifactId>mybatis-plus</artifactId>
-            <version>${mybatis-plus.version}</version>
-        </dependency>
+<!--        <dependency>-->
+<!--            <groupId>com.baomidou</groupId>-->
+<!--            <artifactId>mybatis-plus</artifactId>-->
+<!--            <version>${mybatis-plus.version}</version>-->
+<!--        </dependency>-->
 
 	    <!-- 数据库-->
 	    <dependency>
@@ -148,29 +150,47 @@
             <artifactId>commons-io</artifactId>
             <version>${commons.io.version}</version>
         </dependency>
+
+
+        <!--        ai-alibaba-->
+        <dependency>
+            <groupId>com.alibaba.cloud.ai</groupId>
+            <artifactId>spring-ai-alibaba-starter</artifactId>
+            <version>${ai-alibaba}</version>
+        </dependency>
+
+<!--        <dependency>-->
+<!--            <groupId>org.springframework.ai</groupId>-->
+<!--            <artifactId>spring-ai-openai-spring-boot-starter</artifactId>-->
+<!--        </dependency>-->
+
     </dependencies>
+
+<!--    <dependencyManagement>-->
+<!--        <dependencies>-->
+<!--            <dependency>-->
+<!--                <groupId>org.springframework.ai</groupId>-->
+<!--                <artifactId>spring-ai-bom</artifactId>-->
+<!--                <version>${spring-ai.version}</version>-->
+<!--                <type>pom</type>-->
+<!--                <scope>import</scope>-->
+<!--            </dependency>-->
+<!--        </dependencies>-->
+<!--    </dependencyManagement>-->
+
+    <repositories>
+        <repository>
+            <id>spring-milestones</id>
+            <name>Spring Milestones</name>
+            <url>https://repo.spring.io/milestone</url>
+            <snapshots>
+                <enabled>false</enabled>
+            </snapshots>
+        </repository>
+    </repositories>
 
     <build>
         <plugins>
-            <plugin>
-                <groupId>org.springframework.boot</groupId>
-                <artifactId>spring-boot-maven-plugin</artifactId>
-                <version>2.2.6.RELEASE</version>
-                <executions>
-                    <execution>
-                        <goals>
-                            <goal>
-                                repackage
-                            </goal>
-                        </goals>
-                    </execution>
-                </executions>
-                <configuration>
-                    <mainClass>com.easypan.EasyPanApplication</mainClass>
-                </configuration>
-            </plugin>
-
-
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-compiler-plugin</artifactId>
