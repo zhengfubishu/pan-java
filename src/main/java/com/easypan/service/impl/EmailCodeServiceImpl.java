@@ -52,6 +52,7 @@ public class EmailCodeServiceImpl implements EmailCodeService {
     @Resource
     private RedisComponent redisComponent;
 
+
     /**
      * 根据条件查询列表
      */
@@ -174,6 +175,7 @@ public class EmailCodeServiceImpl implements EmailCodeService {
         }
 
         String code = StringTools.getRandomNumber(Constants.LENGTH_5);
+        logger.error("正在发送验证码: {} 到邮箱:  {} ",code,toEmail);
         sendEmailCode(toEmail, code);
 
         emailCodeMapper.disableEmailCode(toEmail);
