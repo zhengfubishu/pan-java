@@ -34,6 +34,9 @@ import java.net.URLEncoder;
 import java.util.HashMap;
 import java.util.Map;
 
+/**
+ * 账号
+ */
 @RestController("accountController")
 public class AccountController extends ABaseController {
     private static final Logger logger = LoggerFactory.getLogger(AccountController.class);

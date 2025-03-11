@@ -31,6 +31,9 @@ import jakarta.servlet.http.HttpServletResponse;
 import jakarta.servlet.http.HttpSession;
 import java.util.Date;
 
+/**
+ * 外部分享
+ */
 @RestController("webShareController")
 @RequestMapping("/showShare")
 public class WebShareController extends CommonFileController {

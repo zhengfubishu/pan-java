@@ -18,7 +18,9 @@ import org.springframework.web.bind.annotation.RestController;
 import jakarta.annotation.Resource;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
-
+/**
+ *管理员
+ */
 @RestController("adminController")
 @RequestMapping("/admin")
 public class AdminController extends CommonFileController {

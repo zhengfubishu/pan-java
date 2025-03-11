@@ -14,6 +14,9 @@ import org.springframework.web.bind.annotation.RestController;
 import jakarta.annotation.Resource;
 import jakarta.servlet.http.HttpSession;
 
+/**
+ * 分享
+ */
 @RestController("shareController")
 @RequestMapping("/share")
 public class ShareController extends ABaseController {
