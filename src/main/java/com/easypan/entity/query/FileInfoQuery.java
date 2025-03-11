@@ -11,7 +11,7 @@ public class FileInfoQuery extends BaseParam {
      */
     private String fileId;
 
-    private String fileIdFuzzy;
+    private String fileIdFuzzy; //模糊
 
     /**
      * 用户ID
