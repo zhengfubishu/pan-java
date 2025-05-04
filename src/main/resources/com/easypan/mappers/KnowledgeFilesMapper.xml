@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.easypan.mappers.KnowledgeFilesMapper">
+
+        <resultMap id="ResultMap" type="com.easypan.entity.po.KnowledgeFiles">
+            <!--文件ID-->
+            <result property="fileId" column="file_id"/>
+            <result property="cloudFileId" column="cloud_file_id"/>
+            <result property="fileName" column="file_name"/>
+            <result property="fileSize" column="file_size"/>
+            <result property="filePath" column="file_size"/>
+            <result property="uploadTime" column="upload_time"/>
+            <!-- 其他属性映射 -->
+        </resultMap>
+
+
+
+    <!-- 插入文件信息 -->
+    <insert id="save"  parameterType="com.easypan.entity.po.KnowledgeFiles">
+        INSERT INTO knowledge_files (file_id,cloud_file_id, file_name, file_path,file_size, upload_time)
+        VALUES (#{fileId},#{cloudFileId}, #{fileName},#{filePath} ,#{fileSize}, #{uploadTime})
+    </insert>
+
+    <!-- 查询所有文件信息 -->
+    <select id="getKnowledgeFiles" resultMap="ResultMap">
+        SELECT * FROM knowledge_files
+                 where cloud_file_id is not null
+    </select>
+
+    <!-- 根据文件ID查询文件信息 -->
+<select id="getKnowledgeFileById" parameterType="java.lang.String" resultMap="ResultMap">
+    SELECT * FROM knowledge_files
+    WHERE file_id = #{fileId}
+</select>
+
+
+    <!-- 根据文件 ID 删除文件信息 -->
+    <delete id="deleteKnowledgeFileById" parameterType="java.lang.String">
+        DELETE FROM knowledge_files WHERE file_id = #{fileId}
+    </delete>
+</mapper>

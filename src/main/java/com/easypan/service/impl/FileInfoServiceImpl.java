@@ -172,6 +172,7 @@ public class FileInfoServiceImpl implements FileInfoService {
                 infoQuery.setFileMd5(fileMd5);
                 infoQuery.setSimplePage(new SimplePage(0, 1));
                 infoQuery.setStatus(FileStatusEnums.USING.getStatus());
+                //查询文件是否存在
                 List<FileInfo> dbFileList = this.fileInfoMapper.selectList(infoQuery);
                 //秒传
                 if (!dbFileList.isEmpty()) {
@@ -372,7 +373,7 @@ public class FileInfoServiceImpl implements FileInfoService {
             fileInfoMapper.updateFileStatusWithOldStatus(fileId, webUserDto.getUserId(), updateInfo, FileStatusEnums.TRANSFER.getStatus());
         }
     }
-
+//文件合并
     public static void union(String dirPath, String toFilePath, String fileName, boolean delSource) throws BusinessException {
         File dir = new File(dirPath);
         if (!dir.exists()) {
