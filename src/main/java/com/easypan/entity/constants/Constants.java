@@ -29,6 +29,8 @@ public class Constants {
 
     public static final String FILE_FOLDER_TEMP = "/temp/";
 
+    public static final String FILE_FOLDER_KNOWLEDGE= "/knowledge/";
+
     public static final String IMAGE_PNG_SUFFIX = ".png";
 
     public static final String TS_NAME = "index.ts";

@@ -40,7 +40,7 @@ spring:
     default-encoding: UTF-8
     properties:
       mail.smtp.socketFactory.class: javax.net.ssl.SSLSocketFactory
-      mail.debug: true
+#      mail.debug: true
 #    redis
   data:
     redis:
@@ -77,13 +77,20 @@ project:
 
 log:
   root:
-    level: info
+    level: debug
 
 admin:
-  emails: test@qq.com
+#  emails: test@qq.com
+  emails: 1622006863@qq.com
+  #多个账号就用逗号分割 eg如下
+#  emails: test@qq.com,1622006863@qq.com
+#讯飞相关配置
+sparkClient:
+  appid: 6368c7a5
+  apiKey: 9b7522ed87593d8912be355bc89d11d1
+  apiSecret: YjEyMmY1OWZiMGQzNTA1ZmJjZGUwZmU
 
 dev: false
-
 #qq:
 #  app:
 #    id: 123456

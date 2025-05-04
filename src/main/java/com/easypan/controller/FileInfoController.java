@@ -186,7 +186,7 @@ public class FileInfoController extends CommonFileController {
     }
 
     /**
-     * 修改文件目录/移动文件
+     * 修改文件目录 移动文件
      * @param session
      * @param fileIds 修改的文件集合 用','隔开例如 "35pLmYKJs9,NPHFbCe06E,OvXwN8Gy8U"
      * @param filePid 移入的文件夹

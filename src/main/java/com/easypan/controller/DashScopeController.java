@@ -10,16 +10,16 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 /**
- * ai测试
+ * spring ai alibaba测试
  */
 @RestController
-@RequestMapping("/helloworld")
-public class HelloworldController {
+@RequestMapping("/dashScope")
+public class DashScopeController {
   private static final String DEFAULT_PROMPT = "你是一个博学的智能聊天助手，请根据用户提问回答！";
 
   private final ChatClient dashScopeChatClient;
 
-  public HelloworldController(ChatClient.Builder chatClientBuilder) {
+  public DashScopeController(ChatClient.Builder chatClientBuilder) {
     this.dashScopeChatClient = chatClientBuilder
         .defaultSystem(DEFAULT_PROMPT)
          // 实现 Chat Memory 的 Advisor

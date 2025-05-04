@@ -6,7 +6,7 @@ import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Component;
 
-//TODO 配置文件中的配置去理解
+
 @Component("appConfig")
 public class AppConfig {
 

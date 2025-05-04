@@ -58,11 +58,11 @@ public class AccountController extends ABaseController {
     private RedisComponent redisComponent;
 
     /**
-     * 校验图形验证码
+     * 获取图形验证码
      *
      * @param response
      * @param session
-     * @param type 0:登录注册   1:邮箱验证码发送 默认0
+     * @param type 0: 登录注册   1:邮箱验证码发送  默认0
      * @throws IOException
      */
     @RequestMapping(value = "/checkCode")
