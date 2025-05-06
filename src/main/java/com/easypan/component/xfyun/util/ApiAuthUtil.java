@@ -10,12 +10,7 @@ import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
 import java.security.SignatureException;
 
-/**
- * ApiAuthAlgorithm
- *
- * @author ydwang16
- * @version 2023/06/19 14:56
- **/
+
 public class ApiAuthUtil {
     private static final char[] MD5_TABLE = {'0', '1', '2', '3', '4', '5', '6', '7', '8', '9', 'a', 'b', 'c', 'd', 'e', 'f'};
 

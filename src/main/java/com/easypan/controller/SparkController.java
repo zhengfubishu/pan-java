@@ -33,8 +33,7 @@ import java.util.Map;
 import java.util.concurrent.Executors;
 
 /**
- * SparkClientTest
-
+ * 讯飞sse流式输出
  */
 
 @RestController

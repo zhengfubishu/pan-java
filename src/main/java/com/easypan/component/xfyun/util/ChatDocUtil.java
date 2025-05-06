@@ -28,8 +28,6 @@ import java.util.concurrent.TimeUnit;
 /**
  * Test
  *
- * @author mlxu11
- * @version 2024/08/29 13:59
  **/
 public class ChatDocUtil {
 

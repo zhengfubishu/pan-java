@@ -5,8 +5,6 @@ import lombok.Data;
 /**
  * ResponseMsg
  *
- * @author ydwang16
- * @version 2023/09/06 14:11
  **/
 @Data
 public class ResponseMsg {

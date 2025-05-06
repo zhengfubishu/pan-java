@@ -6,8 +6,6 @@ import lombok.Setter;
 /**
  * ChatMessage
  *
- * @author ydwang16
- * @version 2023/06/21 15:43
  **/
 @Getter
 @Setter

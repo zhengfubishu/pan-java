@@ -31,6 +31,10 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+/**
+ * 知识库
+ * @author hehe
+ */
 @RestController
 @RequestMapping("/knowledge")
 public class KnowledgeController extends  ABaseController{
@@ -43,6 +47,11 @@ public class KnowledgeController extends  ABaseController{
     private KnowledgeService knowledgeService;
     private final Logger logger=LoggerFactory.getLogger(KnowledgeController.class);
 
+    /***
+     * 文件上传（用此版）
+     * @param file
+     * @return
+     */
     @PostMapping("/upload2")
     public ResponseVO uploadFile2(@RequestParam("file") MultipartFile file) {
         try {
@@ -94,7 +103,11 @@ public class KnowledgeController extends  ABaseController{
 //    return  Result.failure("未定义");
 }
 
-    @PostMapping("loadFileList")
+    /**
+     * 查询知识库文件列表
+      * @return 含有cloud_id的知识库文件
+     */
+@PostMapping("loadFileList")
     public ResponseVO loadFileList2() {
         List<KnowledgeFiles> knowledgeFiles = knowledgeService.getKnowledgeFiles();
         List<KnowledgeFileVO> knowledgeFileVOList = new ArrayList<>();
@@ -104,6 +117,11 @@ public class KnowledgeController extends  ABaseController{
         return getSuccessResponseVO(knowledgeFileVOList);
     }
 
+    /**
+     * 预览文件
+     * @param response
+     * @param filePath
+     */
     @GetMapping("readfile")
     public void readFile(HttpServletResponse response, String filePath) {
         filePath = appConfig.getProjectFolder() + Constants.FILE_FOLDER_KNOWLEDGE + filePath;
@@ -149,6 +167,14 @@ public class KnowledgeController extends  ABaseController{
         }
     }
 
+    /**
+     * 知识库提问
+     * @param session
+     * @param fileId 文件id
+     * @param question
+     * @return
+     * @throws InterruptedException
+     */
     @RequestMapping("/chat")
     public ResponseVO handleChat(
 //            WebSocket webSocket,

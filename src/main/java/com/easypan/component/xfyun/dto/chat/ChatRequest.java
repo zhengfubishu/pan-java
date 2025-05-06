@@ -9,8 +9,7 @@ import java.util.List;
 /**
  * ChatRequest
  *
- * @author ydwang16
- * @version 2023/06/21 15:40
+ *
  **/
 @Getter
 @Setter

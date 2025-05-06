@@ -13,10 +13,7 @@
 ///**
 // * Test
 // * 详细接口文档请查看 https://www.xfyun.cn/doc/spark/ChatDoc-API.html
-// *
-// * @author mlxu11
-// * @version 2024/08/29 13:59
-// **/
+
 //public class Main {
 //    private static final String appId = "6368c7a5";//控制台获取
 //    private static final String secret = "YjEyMmY1OWZiMGQzNTA1ZmJjZGUwZmUx";//控制台获取
