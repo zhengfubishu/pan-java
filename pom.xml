@@ -9,11 +9,11 @@
     <relativePath/> 
   </parent>  
   <modelVersion>4.0.0</modelVersion>  
-  <groupId>com.easypan</groupId>  
-  <artifactId>easypan</artifactId>  
+  <groupId>com.cloudfile</groupId>
+  <artifactId>cloudfile</artifactId>
   <version>1.0</version>  
   <packaging>jar</packaging>  
-  <name>easypan</name>  
+  <name>cloudfile</name>
   <properties> 
     <java.version>17</java.version>  
     <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>  
