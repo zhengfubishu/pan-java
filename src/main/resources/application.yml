@@ -73,7 +73,7 @@ spring:
         options:
           model: deepseek-chat
 project:
-  folder: d:/tmp/webser/myapps/easypan/
+  folder: d:/tmp/webser/myapps/cloudfile/
 
 log:
   root:
