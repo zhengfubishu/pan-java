@@ -18,7 +18,7 @@ spring:
     resources:
       add-mappings: false
   datasource:
-    url: jdbc:mysql://127.0.0.1:3306/easypan?serverTimezone=GMT%2B8&useUnicode=true&characterEncoding=utf8&autoReconnect=true&allowMultiQueries=true&useSSL=false&allowPublicKeyRetrieval=true
+    url: jdbc:mysql://127.0.0.1:3306/cloudfile?serverTimezone=GMT%2B8&useUnicode=true&characterEncoding=utf8&autoReconnect=true&allowMultiQueries=true&useSSL=false&allowPublicKeyRetrieval=true
     username: root
     password: 123456
     driver-class-name: com.mysql.cj.jdbc.Driver
@@ -73,7 +73,7 @@ spring:
         options:
           model: deepseek-chat
 project:
-  folder: d:/tmp/webser/myapps/cloudfile/
+  folder: d:/tmp/webser/myapps/easypan/
 
 log:
   root:
