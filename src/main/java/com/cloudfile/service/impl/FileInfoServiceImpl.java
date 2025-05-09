@@ -253,10 +253,10 @@ public class FileInfoServiceImpl implements FileInfoService {
 
             resultDto.setStatus(UploadStatusEnums.UPLOAD_FINISH.getCode());
             //事务提交后调用异步方法
-            TransactionSynchronizationManager.registerSynchronization(new TransactionSynchronization() {
+            TransactionSynchronizationManager.registerSynchronization( new TransactionSynchronization() {
                 @Override
                 public void afterCommit() {
-                    //TODO 看到这里
+                    //TODO
                     fileInfoService.transferFile(fileInfo.getFileId(), webUserDto);
                 }
             });
@@ -312,6 +312,11 @@ public class FileInfoServiceImpl implements FileInfoService {
         return fileName;
     }
 
+    /***
+     * 将临时目录中的文件合并后转存到正式存储目录
+     * @param fileId
+     * @param webUserDto
+     */
     @Async
     public void transferFile(String fileId, SessionWebUserDto webUserDto) {
         Boolean transferSuccess = true;
@@ -373,7 +378,15 @@ public class FileInfoServiceImpl implements FileInfoService {
             fileInfoMapper.updateFileStatusWithOldStatus(fileId, webUserDto.getUserId(), updateInfo, FileStatusEnums.TRANSFER.getStatus());
         }
     }
-//文件合并
+
+    /**
+     * 合并文件
+     * @param dirPath
+     * @param toFilePath
+     * @param fileName
+     * @param delSource
+     * @throws BusinessException
+     */
     public static void union(String dirPath, String toFilePath, String fileName, boolean delSource) throws BusinessException {
         File dir = new File(dirPath);
         if (!dir.exists()) {
@@ -431,7 +444,12 @@ public class FileInfoServiceImpl implements FileInfoService {
         if (!tsFolder.exists()) {
             tsFolder.mkdirs();
         }
-
+        /**
+         * 获取视频编码格式
+         * 构造ffprobe命令，指定只检测第一个视频流(v:0)的编码格式
+         * 执行命令并获取原始输出(如"codec_name=h264")
+         * 清理输出结果，提取纯编码格式字符串(如"h264")
+         */
         final String CMD_GET_CODE = "ffprobe -v error -select_streams v:0 -show_entries stream=codec_name %s";
         String cmd = String.format(CMD_GET_CODE, videoFilePath);
         String result = ProcessUtils.executeCommand(cmd, false);
@@ -443,6 +461,7 @@ public class FileInfoServiceImpl implements FileInfoService {
         if ("hevc".equals(codec)) {
             String newFileName = videoFilePath.substring(0, videoFilePath.lastIndexOf(".")) + "_" + videoFilePath.substring(videoFilePath.lastIndexOf("."));
             new File(videoFilePath).renameTo(new File(newFileName));
+
             String CMD_HEVC_264 = "ffmpeg -i %s -c:v libx264 -crf 20 %s";
             cmd = String.format(CMD_HEVC_264, newFileName, videoFilePath);
             ProcessUtils.executeCommand(cmd, false);
